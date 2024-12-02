@@ -29,6 +29,3 @@ if __name__ == "__main__":
             print(value1)
             similarity_list.append(value1 * counts[value1])
     print(sum(similarity_list))
-
-
-

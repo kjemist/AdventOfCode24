@@ -1,0 +1,28 @@
+import pandas as pd
+
+def read_df(path):
+    df = pd.read_csv(path, delimiter=" ")
+    return df
+
+def loop_df(df):
+    safe_lists = []
+    for idx, row in df.iterrows():
+        row_list = df.iloc[idx].to_list()
+        diffs = check_row_diff(row_list)
+        if all(0 < i < 4 for i in diffs):
+            print("Safe list!")
+            print(row)
+            safe_lists.append(row)
+    return safe_lists
+
+def check_row_diff(row):
+    print("input:", row)
+    diffs = [j-i for i,j in zip(row[:-1], row[1:])]
+    print("output:", diffs)
+    return diffs
+
+if __name__ == "__main__":
+    df = read_df("./reports.csv")
+    print(df)
+    safe_lists = loop_df(df)
+    print(len(safe_lists))
